@@ -3,160 +3,641 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michael T. Clare | Data Scientist Portfolio</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <title>Michael T. Clare | Data Scientist & Machine Learning Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #1a5b80;
-      --accent: #00bfae;
-      --bg: #f7f9fa;
-      --text: #222;
-      --muted: #6c7a89;
+      --primary: #0f172a;
+      --secondary: #1e293b;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --bg: #ffffff;
+      --bg-secondary: #f8fafc;
+      --text: #0f172a;
+      --text-secondary: #64748b;
+      --border: #e2e8f0;
+      --shadow: rgba(15, 23, 42, 0.08);
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
-    * { box-sizing: border-box; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      margin: 0;
-      font-family: 'Montserrat', Arial, sans-serif;
-      background: var(--bg);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
       color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    .hero {
       min-height: 100vh;
+      background: var(--gradient);
       display: flex;
-      flex-direction: column;
-    }
-    header {
-      background: var(--primary);
-      color: #fff;
-      padding: 2rem 0 1.5rem 0;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-    header p {
-      margin: 0.5rem 0 0 0;
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--accent);
-    }
-    nav {
-      display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 2rem;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(26,91,128,0.05);
-      padding: 1rem 0;
-      font-size: 1.1rem;
+      position: relative;
+      overflow: hidden;
     }
-    nav a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
     }
-    nav a:hover {
-      color: var(--accent);
-    }
-    .container {
-      flex: 1;
-      max-width: 800px;
-      margin: 2rem auto 0 auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(26,91,128,0.07);
-      padding: 2.5rem 2rem 2rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .bio {
+
+    .hero-content {
       text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
     }
-    .bio h2 {
-      margin: 0 0 0.5rem 0;
-      font-size: 2rem;
-      color: var(--primary);
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      background: linear-gradient(45deg, #ffffff, #e0e7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .bio p {
-      color: var(--muted);
+
+    .hero .subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero .description {
       font-size: 1.1rem;
-      margin: 0 auto;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      opacity: 0.8;
       max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .contact {
+
+    .cta-buttons {
       display: flex;
-      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .btn {
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 1rem;
-    }
-    .contact a {
-      color: var(--primary);
+      padding: 1rem 2rem;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
-    .contact a:hover {
-      color: var(--accent);
+
+    .btn-primary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      backdrop-filter: blur(10px);
+      border-color: rgba(255, 255, 255, 0.3);
     }
-    footer {
-      background: var(--primary);
-      color: #fff;
-      text-align: center;
-      padding: 1.2rem 0 1rem 0;
-      font-size: 1rem;
-      margin-top: 2rem;
+
+    .btn-primary:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
     }
-    .footer-links {
-      margin-top: 0.5rem;
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .social-links {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
     }
-    .footer-links a {
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px) scale(1.1);
+    }
+
+    .projects-section {
+      padding: 5rem 2rem;
+      background: var(--bg-secondary);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px var(--shadow);
+    }
+
+    .project-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-company {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       color: var(--accent);
       text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
+      font-weight: 500;
+      transition: all 0.3s ease;
     }
-    .footer-links a:hover {
-      color: #fff;
-      text-decoration: underline;
+
+    .project-link:hover {
+      color: var(--accent-light);
+      transform: translateX(5px);
     }
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      .container { padding: 1.2rem 0.5rem; }
-      nav { gap: 1rem; font-size: 1rem; }
+
+    .about-section {
+      padding: 5rem 2rem;
+      background: white;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-item {
+      background: var(--bg-secondary);
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 500;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .contact-section {
+      padding: 5rem 2rem;
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .contact-text a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-text a:hover {
+      color: var(--accent);
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      opacity: 0.8;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Michael T. Clare</h1>
-    <p>Data Scientist &amp; Machine Learning Engineer</p>
-  </header>
-  <nav>
-    <a href="thumbtack.html">Thumbtack Project</a>
-    <a href="capgemini.html">Capgemini Project</a>
-    <a href="doordash.html">DoorDash Project</a>
-    <a href="VideoAmp1.html">VideoAmp Project</a>
-  </nav>
-  <main class="container">
-    <section class="contact">
-      <div><strong>Email:</strong> <a href="mailto:mtclare@gmail.com">mtclare@gmail.com</a></div>
-      <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mtclare" target="_blank" rel="noopener">linkedin.com/in/mtclare</a></div>
-      <div><strong>Resume:</strong> Available upon request</div>
-    </section>
-  </main>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Michael T. Clare</h1>
+      <p class="subtitle">Data Scientist & Machine Learning Engineer</p>
+      <p class="description">
+        Transforming complex data into actionable insights through advanced analytics, 
+        machine learning, and data-driven solutions. Passionate about leveraging technology 
+        to solve real-world problems and drive business growth.
+      </p>
+      <div class="cta-buttons">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fas fa-briefcase"></i>
+          View My Work
+        </a>
+        <a href="#contact" class="btn btn-secondary">
+          <i class="fas fa-envelope"></i>
+          Get In Touch
+        </a>
+      </div>
+      <div class="social-links">
+        <a href="mailto:mtclare@gmail.com" class="social-link" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://linkedin.com/in/mtclare" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/mtclare" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">
+        Explore my portfolio of data science and machine learning projects, 
+        showcasing expertise across various industries and technologies.
+      </p>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-thumbs-up"></i>
+          </div>
+          <h3 class="project-title">User Engagement Analysis</h3>
+          <p class="project-company">Thumbtack</p>
+          <p class="project-description">
+            Advanced analytics project focusing on user behavior patterns and engagement metrics 
+            to drive product improvements and user experience optimization.
+          </p>
+          <a href="thumbtack.html" class="project-link">
+            View Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="project-title">Business Intelligence Dashboard</h3>
+          <p class="project-company">Capgemini</p>
+          <p class="project-description">
+            Comprehensive BI solution leveraging machine learning algorithms to provide 
+            actionable insights for strategic decision-making and performance optimization.
+          </p>
+          <a href="capgemini.html" class="project-link">
+            View Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3 class="project-title">Delivery Optimization Model</h3>
+          <p class="project-company">DoorDash</p>
+          <p class="project-description">
+            Predictive modeling and optimization algorithms to enhance delivery efficiency, 
+            reduce costs, and improve customer satisfaction metrics.
+          </p>
+          <a href="doordash.html" class="project-link">
+            View Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3 class="project-title">Video Analytics Platform</h3>
+          <p class="project-company">VideoAmp</p>
+          <p class="project-description">
+            Advanced data science solutions for video content analysis, audience segmentation, 
+            and advertising effectiveness measurement using cutting-edge ML techniques.
+          </p>
+          <a href="VideoAmp1.html" class="project-link">
+            View Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-content">
+        <div>
+          <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">About Me</h2>
+          <div class="about-text">
+            <p>
+              I'm a passionate data scientist with expertise in machine learning, statistical analysis, 
+              and data visualization. With a strong background in both technical implementation and 
+              business strategy, I bridge the gap between complex data and actionable insights.
+            </p>
+            <p>
+              My experience spans across various industries including technology, consulting, and 
+              e-commerce, where I've successfully delivered projects that drive measurable business 
+              impact through data-driven solutions.
+            </p>
+            <p>
+              I'm constantly learning and staying updated with the latest trends in AI/ML, 
+              and I enjoy collaborating with cross-functional teams to solve challenging problems.
+            </p>
+          </div>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 1.5rem; color: var(--primary);">Technical Skills</h3>
+          <div class="skills-grid">
+            <div class="skill-item">Python</div>
+            <div class="skill-item">R</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">TensorFlow</div>
+            <div class="skill-item">PyTorch</div>
+            <div class="skill-item">Scikit-learn</div>
+            <div class="skill-item">Pandas</div>
+            <div class="skill-item">NumPy</div>
+            <div class="skill-item">Tableau</div>
+            <div class="skill-item">Power BI</div>
+            <div class="skill-item">AWS</div>
+            <div class="skill-item">GCP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-subtitle">
+        Interested in collaborating or have a project in mind? 
+        I'd love to hear from you and discuss how we can work together.
+      </p>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-text">
+            <strong>Email</strong><br>
+            <a href="mailto:mtclare@gmail.com">mtclare@gmail.com</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </div>
+          <div class="contact-text">
+            <strong>LinkedIn</strong><br>
+            <a href="https://linkedin.com/in/mtclare" target="_blank" rel="noopener">linkedin.com/in/mtclare</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <div class="contact-text">
+            <strong>Resume</strong><br>
+            <span>Available upon request</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    &copy; 2024 Michael T. Clare
-    <div class="footer-links">
-      <a href="mailto:mtclare@gmail.com">Email</a>
-      <a href="https://linkedin.com/in/mtclare" target="_blank" rel="noopener">LinkedIn</a>
+    <div class="container">
+      <p>&copy; 2024 Michael T. Clare. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add scroll effect to hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+  </script>
 </body>
 </html>
